@@ -34,6 +34,7 @@ parser.add_argument(
     '--inplace',
     type=bool,
     default=False,
+    action='store_true',
     help='If this option is given, the input egg files will be rewritten in place with the results.',
 )
 args = parser.parse_args()
