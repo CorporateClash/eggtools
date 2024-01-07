@@ -3,7 +3,7 @@ from panda3d.egg import EggFilenameNode, EggExternalReference
 
 from eggtools.attributes.EggAttribute import EggAttribute
 
-from utils.envars import CCMODELS_MODELS_PATH
+from eggtools.config.EggVariableConfig import CCMODELS_MODELS_PATH
 import os
 
 # Example file usage:
