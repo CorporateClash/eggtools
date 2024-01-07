@@ -24,7 +24,7 @@ from eggtools.AttributeDefs import DefinedAttributes, ObjectTypeDefs
 from eggtools.attributes.EggAlphaAttribute import EggAlphaAttribute
 from eggtools.attributes.EggAttribute import EggAttribute
 from eggtools.attributes.EggUVNameAttribute import EggUVNameAttribute
-from utils.envars import CCMODELS_MAPS_PATH, CCMODELS_DIR
+from eggtools.config.EggVariableConfig import CCMODELS_MAPS_PATH, CCMODELS_DIR
 
 BASE_PATH = CCMODELS_MAPS_PATH
 
