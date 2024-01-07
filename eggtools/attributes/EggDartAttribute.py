@@ -13,7 +13,7 @@ name2id = {
 
 
 class EggDartAttribute(EggAttribute):
-    def __init__(self, dart_type, override_dart_type):
+    def __init__(self, dart_type, override_dart_type=False):
         self.override_dart_type = override_dart_type
         if type(dart_type) is bool or type(dart_type) is int:
             if dart_type:
