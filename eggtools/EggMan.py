@@ -8,6 +8,7 @@ Allows you to do bulk/individual modifications to a set of egg files, including 
 - Removing Material/MRef data, since we don't have any use for them
 - Renaming Group nodes
 """
+from __future__ import annotations
 
 import logging
 from enum import Enum
@@ -654,6 +655,25 @@ class EggMan(object):
         egg.collapseEquivalentMaterials()
         ctx.egg_materials = set()
         self.mark_dirty(ctx)
+
+    def remove_all_egg_materials(self) -> None:
+        for egg in self.egg_datas.keys():
+            ctx = self.egg_datas[egg]
+            for material in ctx.egg_materials:
+                material.clearAmb()
+                material.clearBase()
+                material.clearDiff()
+                material.clearEmit()
+                material.clearIor()
+                material.clearLocal()
+                material.clearMetallic()
+                material.clearRoughness()
+                material.clearShininess()
+                material.clearSpec()
+
+            egg.collapseEquivalentMaterials()
+            ctx.egg_materials = set()
+            self.mark_dirty(ctx)
 
     def purge_all_comments(self, egg:EggData=None) -> None:
         if not egg:
