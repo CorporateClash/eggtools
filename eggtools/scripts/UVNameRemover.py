@@ -60,4 +60,7 @@ for eggattr in ctx.egg_attributes:
         print(f"Removing {eggattr} from {ctx.filename}")
         eggattr.apply(eggdata, ctx)
         ctx.dirty = True
+if not ctx.dirty:
+    print(f"Couldn't find a UVNameAttribute from {ctx.filename}, not doing anything.")
+
 eggman.write_egg(eggdata, output_file)

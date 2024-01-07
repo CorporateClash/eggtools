@@ -271,6 +271,7 @@ class EggMan(object):
         egg_base = list(filter(lambda x: self.egg_datas[x] == ctx, self.egg_datas))[0]
         for object_type_name in target_node.getObjectTypes():
             object_type_def = ObjectTypeDefs.get(object_type_name, list())
+            # If we don't have an <ObjectType> defined for this instance, just keep it on the egg file and move on.
             if not object_type_def:
                 continue
             for attribute in object_type_def:
