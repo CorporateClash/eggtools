@@ -14,4 +14,4 @@ class EggAccessViolation(EggException):
 
     def __init__(self, egg_data):
         super().__init__()
-        self.filename = egg_data.getFilename()
+        self.filename = egg_data.getEggFilename()
