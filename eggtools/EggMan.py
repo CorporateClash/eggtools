@@ -20,6 +20,7 @@ from dataclasses import dataclass, field
 import os, sys
 from pathlib import Path
 
+from eggtools.EggExceptions import EggAccessViolation
 from eggtools.EggManConfig import DecalConfig, DualConfig, NodeNameConfig
 from eggtools.AttributeDefs import DefinedAttributes, ObjectTypeDefs
 from eggtools.attributes.EggAlphaAttribute import EggAlphaAttribute
@@ -256,7 +257,9 @@ class EggMan(object):
             return
         if not egg_attributes:
             egg_attributes = dict()
-        ctx = self.egg_datas[egg_base]
+        ctx = self.egg_datas.get(egg_base)
+        if not ctx:
+            raise EggAccessViolation(egg_base)
         for attribute in egg_attributes.keys():
             node_entries = egg_attributes[attribute]
             attribute.apply(egg_base, ctx, node_entries)
