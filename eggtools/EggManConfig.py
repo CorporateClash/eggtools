@@ -1,6 +1,7 @@
 import fnmatch
 from dataclasses import dataclass, field
 
+
 @dataclass
 class NodeNameConfig:
     """
@@ -30,9 +31,9 @@ class NodeNameConfig:
         # self._populate(name)
         # print(self.NODE_INCLUDES)
         return (
-            any(term in name for term in self.NODE_INCLUDES) or
-            any(name.startswith(term) for term in self.NODE_STARTSWITH) or
-            any(name.endswith(term) for term in self.NODE_ENDSWITH)
+                any(term in name for term in self.NODE_INCLUDES) or
+                any(name.startswith(term) for term in self.NODE_STARTSWITH) or
+                any(name.endswith(term) for term in self.NODE_ENDSWITH)
         )
 
 

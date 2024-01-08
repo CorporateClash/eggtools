@@ -42,8 +42,12 @@ class EggMaintenanceUtil:
                     egg_texture = self.eggman.get_texture_by_name(egg_obj, texbase)
                     _old_eggtex = egg_texture.getFullpath()
 
-                    old_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(os.path.join(eggctx.filename.getDirname(), _old_eggtex)))
-                    rebase_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(os.path.join(eggctx.filename.getDirname(), rebase_texture)))
+                    old_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(
+                        os.path.join(eggctx.filename.getDirname(), _old_eggtex)
+                    ))
+                    rebase_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(
+                        os.path.join(eggctx.filename.getDirname(), rebase_texture)
+                    ))
 
 
                     if rename_texture_file and os.path.isfile(old_texture_source) and not os.path.isfile(rebase_texture_source):
@@ -78,8 +82,12 @@ class EggMaintenanceUtil:
                 egg_texture = self.eggman.get_texture_by_name(egg_obj, texbase)
                 _old_eggtex = egg_texture.getFullpath().getBasename()
 
-                old_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(os.path.join(eggctx.filename.getDirname(), _old_eggtex)))
-                rebase_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(os.path.join(eggctx.filename.getDirname(), rebase_texture)))
+                old_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(
+                    os.path.join(eggctx.filename.getDirname(), _old_eggtex)
+                ))
+                rebase_texture_source = Filename.toOsSpecific(Filename.fromOsSpecific(
+                    os.path.join(eggctx.filename.getDirname(), rebase_texture)
+                ))
 
                 if os.path.isfile(old_texture_source) and not os.path.isfile(rebase_texture_source):
                     if copy_only:

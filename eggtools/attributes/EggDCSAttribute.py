@@ -51,7 +51,6 @@ class EggDCSAttribute(EggAttribute):
         #         print(f"Addingdcs {self.dcs_mode} to {egg_group.getName()}")
 
 
-
 class EggDCS(EggDCSAttribute):
     def __init__(self, dcs_type):
         super().__init__(dcs_type)

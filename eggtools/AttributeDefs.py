@@ -19,8 +19,6 @@ from eggtools.attributes.EggTagAttribute import EggTag
 from eggtools.attributes.EggExtFileAttribute import EggExtFile
 
 
-
-
 @dataclass
 class _DefinedAttributes:
     DefinedAttributes: dict = field(default_factory=lambda: "")
@@ -43,7 +41,6 @@ DefinedAttributes = _DefinedAttributes(
         "BackstageAttrib": EggBackstageAttribute(),
     }
 )
-
 
 ObjectTypeDefs = {
     # Custom Surfaces
@@ -151,7 +148,6 @@ ObjectTypeDefs = {
         EggCollideMask(0x08),
     ],
 
-
     # Collisions
     "trigger": [
         EggCollideMask(0x01),
@@ -240,7 +236,7 @@ ObjectTypeDefs = {
 
     # Dart
     "dart": [
-      EggDart(1)
+        EggDart(1)
     ],
     "structured": [
         EggDart("structured")
@@ -252,7 +248,7 @@ ObjectTypeDefs = {
 
     # Alpha
     "dual": [
-      EggAlpha('dual')
+        EggAlpha('dual')
     ],
     "blend": [
         EggAlpha('blend')

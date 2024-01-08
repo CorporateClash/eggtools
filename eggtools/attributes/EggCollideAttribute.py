@@ -2,7 +2,6 @@ from panda3d.egg import EggGroup
 
 from eggtools.attributes.EggAttribute import EggAttribute
 
-
 cs2type = {
     'none': EggGroup.CST_none,
     'plane': EggGroup.CST_plane,
