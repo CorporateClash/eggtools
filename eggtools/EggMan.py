@@ -37,9 +37,6 @@ class EggGroupRenameType(str, Enum):
     ReplaceAll = "replace_all"
 
 
-logging.basicConfig(level=logging.CRITICAL)
-
-
 @dataclass
 class EggContext:
     """
@@ -85,7 +82,9 @@ class EggMan(object):
         for sp in path:
             self._search_paths.append(sp)
 
-    def __init__(self, egg_filepaths: list, search_paths: list[str] = None) -> None:
+    def __init__(self, egg_filepaths: list, search_paths: list[str] = None,
+                 loglevel: logging = logging.CRITICAL) -> None:
+        logging.basicConfig(level=loglevel)
         if not search_paths:
             search_paths = [BASE_PATH]
         self.search_paths = search_paths
