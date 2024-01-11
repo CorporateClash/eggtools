@@ -117,6 +117,12 @@ ObjectTypeDefs = {
     "decal": [
         EggDecal(True)
     ],
+    
+    # This is a hack alternative for <ObjectType> { decal }
+    # I have it defined as <Tag> decalflag { flag } in my config, just so it can be registered as A ObjectType.
+    "decalflag": [
+        EggDecal(True)
+    ],
 
     # Billboard
     "billboard": [
