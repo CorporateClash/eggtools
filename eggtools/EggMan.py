@@ -54,6 +54,7 @@ class EggContext:
     egg_materials: Set = field(default_factory=lambda: set())
     egg_attributes: Set = field(default_factory=lambda: set())
     egg_timestamp_old: int = field(default_factory=lambda: False)
+    egg_save_timestamp: bool = field(default_factory=lambda: False)
     egg_ext_file_refs: Set = field(default_factory=lambda: set())
 
     def __hash__(self):
@@ -632,6 +633,7 @@ class EggMan(object):
         ctx = self.egg_datas[egg]
         ctx.egg_timestamp_old = egg.getEggTimestamp()
         egg.setEggTimestamp(1)
+        self.mark_dirty(egg)
 
     def fix_broken_texpaths(self, egg: EggData = None) -> None:
         if not egg:
@@ -712,6 +714,8 @@ class EggMan(object):
             if not dryrun:
                 # If we put uniquifyTRefs here, it will not generate .tref.png files.
                 ctx.egg_texture_collection.uniquifyTrefs()
+                if not ctx.egg_save_timestamp:
+                    self.remove_timestamp(egg)
                 # We get a PermissionDenied error once in a while with models that are not scoped to the target env.
                 if not egg.writeEgg(filename + custom_suffix):
                     logging.error(f"something went wrong when trying to write {egg.egg_filename}")
@@ -737,6 +741,8 @@ class EggMan(object):
         if ctx.dirty:
             # If we put uniquifyTRefs here, it will not generate .tref.png files.
             ctx.egg_texture_collection.uniquifyTrefs()
+            if not ctx.egg_save_timestamp:
+                self.remove_timestamp(egg)
             # We get a PermissionDenied error once in a while with models that are not scoped to the target env.
             try:
                 with open(filename, "w") as egg_file:
