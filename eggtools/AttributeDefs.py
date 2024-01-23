@@ -13,7 +13,7 @@ from eggtools.attributes.EggCollideMaskAttribute import EggCollideMask
 from eggtools.attributes.EggDCSAttribute import EggDCS
 from eggtools.attributes.EggDartAttribute import EggDart
 from eggtools.attributes.EggDecalAttribute import EggDecalAttribute, EggDecal
-from eggtools.attributes.EggModelAttribute import EggModel
+from eggtools.attributes.EggModelAttribute import EggModel, EggModelAttribute
 from eggtools.attributes.EggSequenceAttribute import EggSequence
 from eggtools.attributes.EggTagAttribute import EggTag
 from eggtools.attributes.EggExtFileAttribute import EggExtFile
@@ -38,6 +38,7 @@ DefinedAttributes = _DefinedAttributes(
         "DualAttrib": EggAlphaAttribute("dual", False),
         "DualAttribOW": EggAlphaAttribute("dual", True),
         "DecalAttrib": EggDecalAttribute(),
+        "ModelAttrib": EggModelAttribute(),
         "BackstageAttrib": EggBackstageAttribute(),
     }
 )
@@ -117,7 +118,7 @@ ObjectTypeDefs = {
     "decal": [
         EggDecal(True)
     ],
-    
+
     # This is a hack alternative for <ObjectType> { decal }
     # I have it defined as <Tag> decalflag { flag } in my config, just so it can be registered as A ObjectType.
     "decalflag": [
