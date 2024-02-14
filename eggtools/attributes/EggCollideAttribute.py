@@ -33,12 +33,12 @@ flags2type = {
 class EggCollideAttribute(EggAttribute):
     def __init__(self, csname, flags, name=''):
         # <Collide> name { type [flags] }
-
-        # Make sure flags is not empty & it's a proper list.
-        if flags and flags is not type(list):
-            flags = [flags]
         self.cstype = cs2type[csname.lower()]
         self.flags = list()
+
+        # Make sure flags is not empty & it's a proper list.
+        if flags and not isinstance(flags, list):
+            flags = [flags]
 
         #  Using <Collide> without 'descend' is deprecated, add it on:
         if 'descend' not in flags:
@@ -57,14 +57,15 @@ class EggCollideAttribute(EggAttribute):
 
     def _modify_group(self, egg_group):
         if self.target_nodes.check(egg_group.getName()):
+            # We must aggregate all of the collision bits
+            collisionFlag = 0
             for flag in self.flags:
-                egg_group.setCollideFlags(flag)
+                collisionFlag |= flag
+            egg_group.setCollideFlags(collisionFlag)
             egg_group.setCollisionName(self.name)
             egg_group.setCsType(self.cstype)
 
 
 class EggCollide(EggCollideAttribute):
     def __init__(self, csname, flags, name=''):
-        if flags is not type(list):
-            flags = []
         super().__init__(csname, flags, name)
