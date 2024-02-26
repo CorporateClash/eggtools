@@ -14,14 +14,11 @@ class EggUVScrollAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        pass
-
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
-            egg_group.set_scroll_u(self.u_speed)
-            egg_group.set_scroll_v(self.v_speed)
-            egg_group.set_scroll_w(self.w_speed)
-            egg_group.set_scroll_r(self.r_speed)
+        if self.target_nodes.check(egg_node.getName()):
+            egg_node.set_scroll_u(self.u_speed)
+            egg_node.set_scroll_v(self.v_speed)
+            egg_node.set_scroll_w(self.w_speed)
+            egg_node.set_scroll_r(self.r_speed)
 
 
 class EggUVScroll(EggUVScrollAttribute):

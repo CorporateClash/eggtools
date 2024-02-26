@@ -14,9 +14,6 @@ class EggFogAttribute(EggAttribute):
         self.flag = bool(disable)
         super().__init__("Scalar", "nofog", self.flag)
 
-    def _modify_group(self, egg_group):
-        pass
-
     def _modify_polygon(self, egg_polygon, tref):
         pass
 

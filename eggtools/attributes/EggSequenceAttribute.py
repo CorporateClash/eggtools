@@ -23,10 +23,6 @@ class EggSequenceAttribute(EggSwitchAttribute, EggFPSAttribute):
         for seqAttr in self.seq:
             seqAttr._modify_node(egg_node)
 
-    def _modify_group(self, egg_group):
-        for seqAttr in self.seq:
-            seqAttr._modify_group(egg_group)
-
 
 class EggSequence(EggSequenceAttribute):
     def __init__(self, fps_rate=24.0, enable=1):

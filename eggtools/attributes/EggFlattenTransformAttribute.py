@@ -16,9 +16,6 @@ class EggFlattenTransformAttribute(EggAttribute):
         # Not a real attribute
         super().__init__("Modifier", "flatten-transforms", "True")
 
-    def _modify_group(self, egg_group):
-        pass
-
     def _modify_polygon(self, egg_polygon, tref):
         pass
 

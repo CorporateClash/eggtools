@@ -48,9 +48,6 @@ class EggDepthWriteAttribute(EggAttribute):
                 if render_mode.getDepthWriteMode() != self.depth_type:
                     render_mode.setDepthWriteMode(self.depth_type)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggDepthWrite(EggDepthWriteAttribute):
     def __init__(self, depth_type, overwrite=False):

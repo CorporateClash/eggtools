@@ -18,11 +18,6 @@ class EggTemplateAttribute(EggAttribute):
             # Do something here for EggNodes #
             pass
 
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
-            # Do something here for EggGroups #
-            pass
-
 
 class EggTemplate(EggTemplateAttribute):
     def __init__(self, entry_type="Entry", entry_name='foo', contents='bar'):

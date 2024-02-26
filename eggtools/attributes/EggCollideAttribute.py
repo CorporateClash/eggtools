@@ -117,27 +117,19 @@ class EggCollideAttribute(EggAttribute):
             if not self.preserve_uv_data:
                 self.remove_uv_data(egg_node)
 
-    def _modify_group(self, egg_group):
-        pass
-
     def remove_uv_data(self, egg_node):
-        # if hasattr(egg_node, "has_vertex_color"):
-        #     print(type(egg_node))
-        # if egg_node.hasColor():
-        #     print(egg_node.getColor())
-
+        """
+        Removes UV data and textures/materials associated with the node's polygons.
+        """
         if isinstance(egg_node, EggGroup):
             for child in egg_node.getChildren():
                 self.remove_uv_data(child)
 
-        # print(type(egg_node))
         if isinstance(egg_node, EggVertexPool):
             for vpoolchild in egg_node:  # should only contain EggVertexes
                 vpoolchild.clear_uv()
 
         if isinstance(egg_node, EggPolygon):
-            # print(egg_node.has_vertex_color())
-            # print(egg_node.connected_shading)
             if "keep" not in self.flags:
                 egg_node.clear_texture()
                 egg_node.clear_material()

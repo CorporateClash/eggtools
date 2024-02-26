@@ -44,9 +44,6 @@ class EggVisibilityAttribute(EggAttribute):
                 if egg_node.getVisibilityMode() != self.visibility_type:
                     egg_node.setVisibilityMode(self.visibility_type)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggVisibility(EggVisibilityAttribute):
     def __init__(self, visibility_type, overwrite=False):

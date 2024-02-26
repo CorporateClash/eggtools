@@ -57,7 +57,6 @@ class EggAttribute(ABC):
                 if isinstance(child, EggNode):
                     self._modify_node(child)
                 if isinstance(child, EggGroupNode):
-                    self._modify_group(child)
                     traverse_egg(child, ctx)
                 if isinstance(child, EggPolygon):
                     poly_textures = child.getTextures()
@@ -73,10 +72,4 @@ class EggAttribute(ABC):
 
     @abstractmethod
     def _modify_node(self, egg_node):
-        pass
-
-    @abstractmethod
-    def _modify_group(self, egg_group):
-        # NOTE: We may need to remove this method as it is redundant.
-        # TODO: Remove, we can do isinstance(egg_node, EggGroup) in _modify_node !
         pass

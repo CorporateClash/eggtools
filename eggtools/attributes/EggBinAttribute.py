@@ -10,16 +10,13 @@ class EggBinAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        pass
-
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
+        if self.target_nodes.check(egg_node.getName()):
             if not self.contents:
-                egg_group.clearBin()
+                egg_node.clearBin()
                 return
-            bin_name = egg_group.getBin()
+            bin_name = egg_node.getBin()
             if not bin_name:
-                egg_group.setBin(self.contents)
+                egg_node.setBin(self.contents)
 
 
 class EggBin(EggBinAttribute):

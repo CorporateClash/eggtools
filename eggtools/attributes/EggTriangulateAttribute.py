@@ -27,9 +27,6 @@ class EggTriangulateAttribute(EggAttribute):
         super().__init__("Modifier", "TriangulatePolygons", flag)
         self.flag = name2id[flag.lower()]
 
-    def _modify_group(self, egg_group):
-        pass
-
     def _modify_polygon(self, egg_polygon, tref):
         pass
 

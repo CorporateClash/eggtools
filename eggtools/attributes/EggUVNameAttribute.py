@@ -34,9 +34,6 @@ class EggUVNameAttribute(EggAttribute):
                     # Clear foo from <UV> foo { ... }
                     uv.setName(self.new_uv_name)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggUVName(EggUVNameAttribute):
     def __init__(self, uv_name='UVMap', new_uv_name=''):

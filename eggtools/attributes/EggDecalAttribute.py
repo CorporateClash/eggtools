@@ -20,9 +20,6 @@ class EggDecalAttribute(EggAttribute):
                 # logging.info(f"applying decal to {child.get_name()}")
                 egg_node.setDecalFlag(True)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggDecal(EggDecalAttribute):
     def __init__(self, apply):

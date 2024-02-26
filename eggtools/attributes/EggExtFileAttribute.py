@@ -95,18 +95,13 @@ class EggExtFileAttribute(EggAttribute):
 
     def _modify_node(self, egg_node):
         if self.target_nodes.check(egg_node.getName()):
-            # Do something here for EggNodes #
-            pass
-
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
             fileNode = EggExternalReference(self.node_name, self.file.getFullpath())
             # Check to see if the node already has the external reference defined.
-            for child in egg_group.getChildren():
+            for child in egg_node.getChildren():
                 if isinstance(child, EggExternalReference) and child.getName() == fileNode.getName():
                     return
-            print(f"Adding {fileNode} to {egg_group.getName()}")
-            egg_group.addChild(fileNode)
+            print(f"Adding {fileNode} to {egg_node.getName()}")
+            egg_node.addChild(fileNode)
 
 
 class EggExtFile(EggExtFileAttribute):

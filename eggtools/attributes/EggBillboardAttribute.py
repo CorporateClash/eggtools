@@ -24,11 +24,6 @@ class EggBillboardAttribute(EggAttribute):
             if not egg_node.getBillboardType():
                 egg_node.setBillboardType(self.billboard_mode)
 
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
-            if not egg_group.getBillboardType():
-                egg_group.setBillboardType(self.billboard_mode)
-
 
 class EggBillboard(EggBillboardAttribute):
     def __init__(self, billboard_type):

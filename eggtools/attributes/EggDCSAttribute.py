@@ -43,13 +43,6 @@ class EggDCSAttribute(EggAttribute):
                 egg_node.setDcsType(self.dcs_mode)
         pass
 
-    def _modify_group(self, egg_group):
-        pass
-        # if self.target_nodes.check(egg_group.getName()):
-        #     if not egg_group.hasDcsType():
-        #         egg_group.setDcsType(self.dcs_mode)
-        #         print(f"Addingdcs {self.dcs_mode} to {egg_group.getName()}")
-
 
 class EggDCS(EggDCSAttribute):
     def __init__(self, dcs_type):

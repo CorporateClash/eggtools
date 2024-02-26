@@ -62,9 +62,6 @@ class EggAlphaAttribute(EggAttribute):
                 if egg_node.getAlphaMode() != self.alpha_mode:
                     egg_node.setAlphaMode(self.alpha_mode)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggAlpha(EggAlphaAttribute):
     def __init__(self, alpha_name, overwrite=False):

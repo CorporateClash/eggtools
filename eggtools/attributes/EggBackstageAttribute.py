@@ -27,14 +27,6 @@ class EggBackstageAttribute(EggAttribute):
             if not egg_node.hasObjectType('backstage'):
                 egg_node.addObjectType('backstage')
 
-    def _modify_group(self, egg_group):
-        pass
-        # print(f"Checking node {egg_group.getName()} is {self.target_nodes.check(egg_group.getName())}")
-        # if self.target_nodes.check(egg_group.getName()):
-        #     if not egg_group.hasObjectType('backstage'):
-        #         egg_group.addObjectType('backstage')
-        #         print(f"Adding backstage to {egg_group.getName()}")
-
 
 class EggBackstage(EggBackstageAttribute):
     def __init__(self, backstage_flag=True):

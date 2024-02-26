@@ -41,9 +41,6 @@ class EggPointLightAttribute(EggAttribute):
             for child in egg_node.getChildren():
                 self.configure_pointlight(child)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggPointLight(EggPointLightAttribute):
     def __init__(self, thickness: float = 1.0, perspective: bool = False):

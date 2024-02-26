@@ -22,12 +22,7 @@ class EggSwitchAttribute(EggAttribute):
 
     def _modify_node(self, egg_node):
         if self.target_nodes.check(egg_node.getName()):
-            # Do something here for EggNodes #
-            pass
-
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
-            egg_group.setSwitchFlag(self.contents)
+            egg_node.setSwitchFlag(self.contents)
 
 
 class EggSwitch(EggSwitchAttribute):

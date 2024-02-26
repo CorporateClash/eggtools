@@ -47,9 +47,6 @@ class EggDepthTestAttribute(EggAttribute):
                 if render_mode.getDepthTestMode() != self.depth_type:
                     render_mode.setDepthTestMode(self.depth_type)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggDepthTest(EggDepthTestAttribute):
     def __init__(self, depth_type, overwrite=False):

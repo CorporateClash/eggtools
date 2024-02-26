@@ -25,9 +25,6 @@ class EggDepthOffsetAttribute(EggAttribute):
                 if egg_node.getDepthOffset() != self.offset_value:
                     egg_node.setDepthOffset(self.offset_value)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggDepthOffset(EggDepthOffsetAttribute):
     def __init__(self, offset_value, overwrite=False):

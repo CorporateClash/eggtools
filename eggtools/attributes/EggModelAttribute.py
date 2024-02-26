@@ -11,14 +11,11 @@ class EggModelAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        pass
-
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.get_name()):
-            if egg_group.getModelFlag():
+        if self.target_nodes.check(egg_node.get_name()):
+            if egg_node.getModelFlag():
                 pass
             else:
-                egg_group.setModelFlag(self.model_flag)
+                egg_node.setModelFlag(self.model_flag)
 
 
 class EggModel(EggModelAttribute):

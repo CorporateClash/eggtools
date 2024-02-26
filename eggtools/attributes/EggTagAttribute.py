@@ -11,10 +11,6 @@ class EggTagAttribute(EggAttribute):
         if target_nodes:
             self.set_target_nodes(target_nodes)
 
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
-            egg_group.setTag(self.name, self.contents)
-
     def _modify_polygon(self, egg_polygon, tref):
         pass
 

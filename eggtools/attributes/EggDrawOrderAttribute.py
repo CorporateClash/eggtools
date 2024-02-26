@@ -16,9 +16,6 @@ class EggDrawOrderAttribute(EggAttribute):
     def _modify_node(self, egg_node):
         pass
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggDrawOrder(EggDrawOrderAttribute):
     def __init__(self, draw_order):

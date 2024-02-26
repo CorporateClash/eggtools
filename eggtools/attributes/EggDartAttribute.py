@@ -35,9 +35,6 @@ class EggDartAttribute(EggAttribute):
             if hasattr(egg_node, 'getDartType') and (self.override_dart_type or not egg_node.getDartType()):
                 egg_node.setDartType(self.dart_mode)
 
-    def _modify_group(self, egg_group):
-        pass
-
 
 class EggDart(EggDartAttribute):
     def __init__(self, dart_type, override_dart_type=False):

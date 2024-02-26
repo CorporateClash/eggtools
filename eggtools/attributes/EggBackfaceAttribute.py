@@ -21,9 +21,6 @@ class EggBackfaceAttribute(EggAttribute):
         if self.target_nodes.check(egg_node.getName()):
             self.modify_backfaces(egg_node)
 
-    def _modify_group(self, egg_group):
-        pass
-
     def modify_backfaces(self, egg_node):
         if isinstance(egg_node, EggGroup):
             for child in egg_node.getChildren():

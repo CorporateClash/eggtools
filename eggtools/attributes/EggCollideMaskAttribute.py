@@ -21,19 +21,16 @@ class EggCollideMaskAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        pass
-
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
+        if self.target_nodes.check(egg_node.getName()):
             collide_from, collide_to = name2type[self.side][1]
             # Make it a bit prettier
             if all([collide_from, collide_to]):
-                egg_group.setCollideMask(self.value)
+                egg_node.setCollideMask(self.value)
                 return
             if collide_from:
-                egg_group.setFromCollideMask(self.value)
+                egg_node.setFromCollideMask(self.value)
             if collide_to:
-                egg_group.setIntoCollideMask(self.value)
+                egg_node.setIntoCollideMask(self.value)
 
 
 class EggCollideMask(EggCollideMaskAttribute):
