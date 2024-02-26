@@ -2,6 +2,8 @@ from eggtools.attributes.EggAttribute import EggAttribute
 
 """
 Not to be confused with <SwitchCondition>, which is used for LODs.
+
+Usually is accompanied by EggFPS
 """
 
 

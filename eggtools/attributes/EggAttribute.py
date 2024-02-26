@@ -78,4 +78,5 @@ class EggAttribute(ABC):
     @abstractmethod
     def _modify_group(self, egg_group):
         # NOTE: We may need to remove this method as it is redundant.
+        # TODO: Remove, we can do isinstance(egg_node, EggGroup) in _modify_node !
         pass
