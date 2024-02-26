@@ -1,4 +1,4 @@
-from panda3d.egg import EggGroup
+from panda3d.egg import EggGroup, EggVertexPool, EggPolygon
 
 from eggtools.attributes.EggAttribute import EggAttribute
 
@@ -81,7 +81,7 @@ flags2type = {
 
 
 class EggCollideAttribute(EggAttribute):
-    def __init__(self, csname, flags, name=''):
+    def __init__(self, csname, flags, name='', preserve_uv_data=True):
         # <Collide> name { type [flags] }
         self.cstype = cs2type[csname.lower()]
         self.flags = list()
@@ -97,25 +97,52 @@ class EggCollideAttribute(EggAttribute):
         for flag_entry in flags:
             self.flags.append(flags2type[flag_entry.lower()])
 
+        self.preserve_uv_data = preserve_uv_data
+
         super().__init__(entry_type="Collide", name=name, contents=csname + (' ' if flags else '') + ' '.join(flags))
 
     def _modify_polygon(self, egg_polygon, tref=None):
+        # print(egg_polygon.hasColor())
         pass
 
     def _modify_node(self, egg_node):
-        pass
-
-    def _modify_group(self, egg_group):
-        if self.target_nodes.check(egg_group.getName()):
+        if self.target_nodes.check(egg_node.getName()) and hasattr(egg_node, "setCollideFlags"):
             # We must aggregate all of the collision bits
             collisionFlag = 0
             for flag in self.flags:
                 collisionFlag |= flag
-            egg_group.setCollideFlags(collisionFlag)
-            egg_group.setCollisionName(self.name)
-            egg_group.setCsType(self.cstype)
+            egg_node.setCollideFlags(collisionFlag)
+            egg_node.setCollisionName(self.name)
+            egg_node.setCsType(self.cstype)
+            if not self.preserve_uv_data:
+                self.remove_uv_data(egg_node)
+
+    def _modify_group(self, egg_group):
+        pass
+
+    def remove_uv_data(self, egg_node):
+        # if hasattr(egg_node, "has_vertex_color"):
+        #     print(type(egg_node))
+        # if egg_node.hasColor():
+        #     print(egg_node.getColor())
+
+        if isinstance(egg_node, EggGroup):
+            for child in egg_node.getChildren():
+                self.remove_uv_data(child)
+
+        # print(type(egg_node))
+        if isinstance(egg_node, EggVertexPool):
+            for vpoolchild in egg_node:  # should only contain EggVertexes
+                vpoolchild.clear_uv()
+
+        if isinstance(egg_node, EggPolygon):
+            # print(egg_node.has_vertex_color())
+            # print(egg_node.connected_shading)
+            if "keep" not in self.flags:
+                egg_node.clear_texture()
+                egg_node.clear_material()
 
 
 class EggCollide(EggCollideAttribute):
-    def __init__(self, csname, flags, name=''):
-        super().__init__(csname, flags, name)
+    def __init__(self, csname, flags, name='', preserve_uv_data=True):
+        super().__init__(csname, flags, name, preserve_uv_data=preserve_uv_data)
