@@ -28,7 +28,8 @@ class EggFlattenTransformAttribute(EggAttribute):
                 target = egg_node.parent
             else:
                 target = egg_node
-            if target.billboard_type and not self.flatten_billboards:
+            # edge case: EggTexture
+            if hasattr(target, "billboard_type") and target.billboard_type and not self.flatten_billboards:
                 return
             egg_node.flatten_transforms()
 
