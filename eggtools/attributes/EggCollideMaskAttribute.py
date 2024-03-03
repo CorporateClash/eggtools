@@ -21,7 +21,7 @@ class EggCollideMaskAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        if self.target_nodes.check(egg_node.getName()):
+        if self.target_nodes.check(egg_node.getName()) and hasattr(egg_node, "setFromCollideMask"):
             collide_from, collide_to = name2type[self.side][1]
             # Make it a bit prettier
             if all([collide_from, collide_to]):
