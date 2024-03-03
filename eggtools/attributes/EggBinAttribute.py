@@ -11,6 +11,9 @@ class EggBinAttribute(EggAttribute):
 
     def _modify_node(self, egg_node):
         if self.target_nodes.check(egg_node.getName()):
+            # We can assume if they have a getter then they should have a setter, and a clear-er...
+            if not hasattr(egg_node, "getBin"):
+                return
             if not self.contents:
                 egg_node.clearBin()
                 return
