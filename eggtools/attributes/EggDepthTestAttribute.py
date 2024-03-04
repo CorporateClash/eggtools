@@ -31,7 +31,7 @@ class EggDepthTestAttribute(EggAttribute):
                     egg_polygon.setDepthTestMode(self.depth_type)
 
     def _modify_node(self, egg_node):
-        if self.target_nodes.check(egg_node.getName()):
+        if self.target_nodes.check(egg_node.getName()) and hasattr(egg_node, "getDepthTestMode"):
             # First, check if we HAVE a render mode in the first place:
             render_mode = egg_node.getDepthTestMode()  # type: EggRenderMode
 
