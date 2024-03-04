@@ -53,7 +53,7 @@ class EggAlphaAttribute(EggAttribute):
                     egg_polygon.setAlphaMode(self.alpha_mode)
 
     def _modify_node(self, egg_node):
-        if self.target_nodes.check(egg_node.getName()):
+        if self.target_nodes.check(egg_node.getName()) and hasattr(egg_node, "determineAlphaMode"):
             # We got ourselves a winner. Let's find the Group parent and add a dual attribute to it.
             alpha_mode = egg_node.determineAlphaMode()
             if not alpha_mode and hasattr(egg_node, "setAlphaMode"):
