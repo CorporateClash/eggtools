@@ -365,14 +365,6 @@ class EggMan(object):
         if oldAlphaMode:
             et.setAlphaMode(oldAlphaMode)
 
-        oldCombineMode = old_egg_texture.getCombineMode()
-        if oldCombineMode:
-            et.setCombineMode(old_egg_texture)
-
-        oldCombineOperand = old_egg_texture.getCombineOperand()
-        if oldCombineOperand:
-            et.setCombineOperand(oldCombineOperand)
-
         oldDrawOrder = old_egg_texture.getDrawOrder()
         if oldDrawOrder:
             et.setDrawOrder(oldDrawOrder)
