@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 import os, sys
 from pathlib import Path
 
-from eggtools.EggExceptions import EggAccessViolation
+from eggtools.EggExceptions import EggAccessViolation, EggImproperArgType
 from eggtools.EggManConfig import DecalConfig, DualConfig, NodeNameConfig
 from eggtools.AttributeDefs import DefinedAttributes, ObjectTypeDefs
 from eggtools.attributes.EggAlphaAttribute import EggAlphaAttribute
@@ -72,6 +72,18 @@ class EggMan(object):
         for egg in self.egg_datas.keys():
             out += str(self.egg_datas[egg]) + "\n"
         return out
+
+    def verify_integrity(func):
+        def verify(self, egg_base: EggData, *args):
+            if not isinstance(egg_base, EggData):
+                raise EggImproperArgType(egg_base, EggData)
+
+            if not self.egg_datas.get(egg_base):
+                raise EggAccessViolation(egg_base)
+
+            func(self, egg_base, *args)
+
+        return verify
 
     @property
     def search_paths(self) -> list:
@@ -253,14 +265,12 @@ class EggMan(object):
         for egg_data in self.egg_datas.keys():
             self.apply_attributes(egg_data, egg_attributes)
 
+    @verify_integrity
     def apply_attributes(self, egg_base: EggData, egg_attributes: dict[EggAttribute] = None) -> None:
-        if not egg_base:
-            return
+        ctx = self.egg_datas.get(egg_base)
+
         if not egg_attributes:
             egg_attributes = dict()
-        ctx = self.egg_datas.get(egg_base)
-        if not ctx:
-            raise EggAccessViolation(egg_base)
         for attribute in egg_attributes.keys():
             node_entries = egg_attributes[attribute]
             attribute.apply(egg_base, ctx, node_entries)
