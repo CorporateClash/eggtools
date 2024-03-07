@@ -10,6 +10,7 @@ Allows you to do bulk/individual modifications to a set of egg files, including 
 """
 from __future__ import annotations
 
+import copy
 import logging
 from enum import Enum
 from typing import Set
@@ -330,6 +331,36 @@ class EggMan(object):
         et.wrap_mode = old_egg_texture.wrap_mode
         et.wrap_u = old_egg_texture.wrap_u
         et.wrap_v = old_egg_texture.wrap_v
+
+        # Inherited Attributes
+        oldDepthOffset = old_egg_texture.getDepthOffset()
+        if oldDepthOffset:
+            et.setDepthOffset(oldDepthOffset)
+
+        oldDepthWrite = old_egg_texture.getDepthWriteMode()
+        if oldDepthWrite:
+            et.setDepthWriteMode(oldDepthWrite)
+
+        oldDepthTest = old_egg_texture.getDepthTestMode()
+        if oldDepthTest:
+            et.setDepthTestMode(oldDepthTest)
+
+        oldAlphaMode = old_egg_texture.getAlphaMode()
+        if oldAlphaMode:
+            et.setAlphaMode(oldAlphaMode)
+
+        oldCombineMode = old_egg_texture.getCombineMode()
+        if oldCombineMode:
+            et.setCombineMode(old_egg_texture)
+
+        oldCombineOperand = old_egg_texture.getCombineOperand()
+        if oldCombineOperand:
+            et.setCombineOperand(oldCombineOperand)
+
+        oldDrawOrder = old_egg_texture.getDrawOrder()
+        if oldDrawOrder:
+            et.setDrawOrder(oldDrawOrder)
+
         return et
 
     def _replace_poly_tref(self,
