@@ -146,8 +146,8 @@ class EggMan(object):
         # we ask for ctx just to keep things in order
         for child in egg.getChildren():
             if isinstance(child, EggGroup):
-                self._replace_object_types(ctx, child)
                 # print(f"ObjectTypes for {child.getName()} - {child.getObjectTypes()}")
+                self._replace_object_types(ctx, child)
                 self._traverse_egg(child, ctx)
             # <Material> { ... }
             if isinstance(child, EggMaterial):
@@ -271,12 +271,18 @@ class EggMan(object):
 
         if not egg_attributes:
             egg_attributes = dict()
+
+        dirty = False
+
         for attribute in egg_attributes.keys():
             node_entries = egg_attributes[attribute]
             attribute.apply(egg_base, ctx, node_entries)
+            dirty = True
         for attribute in ctx.egg_attributes:
             attribute.apply(egg_base, ctx)
-        self.mark_dirty(egg_base)
+            dirty = True
+        if dirty:
+            self.mark_dirty(egg_base)
 
     def _replace_object_types(self, ctx: EggContext, target_node: EggGroup) -> None:
         if not hasattr(target_node, "getObjectTypes"):
@@ -744,7 +750,7 @@ class EggMan(object):
 
     def write_all_eggs(self, custom_suffix="", dryrun=False):
         for egg_data in self.egg_datas.keys():
-            self.write_egg(egg_data, custom_suffix=custom_suffix, dryrun=False)
+            self.write_egg(egg_data, custom_suffix=custom_suffix, dryrun=dryrun)
 
     def write_egg(self, egg, filename: Filename = None, custom_suffix="", dryrun=False):
         if not filename:
