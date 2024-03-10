@@ -14,7 +14,7 @@ class EggDepthOffsetAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        if self.target_nodes.check(egg_node.getName()):
+        if self.target_nodes.check(egg_node.getName()) and hasattr(egg_node, "getDepthOffset"):
             if self.clear_offset:
                 egg_node.clearDepthOffset()
                 return

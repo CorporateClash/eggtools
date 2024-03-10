@@ -11,7 +11,7 @@ class EggModelAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        if self.target_nodes.check(egg_node.get_name()):
+        if self.target_nodes.check(egg_node.get_name()) and hasattr(egg_node, "getModelFlag"):
             if egg_node.getModelFlag():
                 pass
             else:

@@ -32,7 +32,9 @@ class EggDepthWriteAttribute(EggAttribute):
                     egg_polygon.setDepthWriteMode(self.depth_type)
 
     def _modify_node(self, egg_node):
-        if self.target_nodes.check(egg_node.getName()) and hasattr(egg_node, "determineDepthWriteMode"):
+        if self.target_nodes.check(egg_node.getName()) and\
+                hasattr(egg_node, "determineDepthWriteMode") and\
+                hasattr(egg_node, "setDepthWriteMode"):
             # First, check if we HAVE a render mode in the first place:
             render_mode = egg_node.determineDepthWriteMode()  # type: EggRenderMode
 
