@@ -180,7 +180,7 @@ ObjectTypeDefs = {
         EggCollideMask(0x06),
     ],
     "smooth-floors": [
-        EggCollide('polyset', ['descend' 'level']),
+        EggCollide('polyset', ['descend', 'level']),
         EggCollideMask(0x000fffff, 'from'),
         EggCollideMask(0x00000002, 'into'),
     ],
