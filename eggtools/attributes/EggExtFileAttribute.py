@@ -1,5 +1,6 @@
 from panda3d.core import Filename
 from panda3d.egg import EggFilenameNode, EggExternalReference
+from typing import List
 
 from eggtools.attributes.EggAttribute import EggAttribute
 
@@ -70,20 +71,33 @@ class EggExtFileAttribute(EggAttribute):
     group with the contents of the egg file, if it can be found.
     """
 
-    def __init__(self, filename: str, node_name: str = ""):
+    def __init__(self, filename: str, node_name: str = "", file_locations: List[str] = None):
         """
         <File> {
             my_file.egg
         }
         """
         self.node_name = node_name
-        if not os.path.isfile(filename):
-            filename = os.path.join(CCMODELS_MODELS_PATH, filename)
 
-        if not os.path.isfile(filename):
-            print(f"Warning: Still couldn't find a file {filename}")
+        if not file_locations:
+            file_locations = ["."]
 
-        self.file = Filename.fromOsSpecific(filename)
+        for file_location in file_locations:
+            # Source files are going to use relative paths
+            if not file_location.endswith("/") and not file_location.endswith("\\\\"):
+                file_location += "/"
+
+            filepath = f"{file_location}{filename}"
+
+            if not os.path.isfile(filepath):
+                filepath = os.path.join(CCMODELS_MODELS_PATH, filename)
+
+            if not os.path.isfile(filepath):
+                print(f"Warning: Still couldn't find a file {filepath}")
+            else:
+                break
+
+        self.file = Filename.fromOsSpecific(filepath)
         self.file.makeRelativeTo(Filename.fromOsSpecific(CCMODELS_MODELS_PATH))
 
         super().__init__(entry_type="File", name=self.node_name, contents=self.file)
@@ -105,5 +119,5 @@ class EggExtFileAttribute(EggAttribute):
 
 
 class EggExtFile(EggExtFileAttribute):
-    def __init__(self, filename: str, node_name: str = ""):
-        super().__init__(filename, node_name)
+    def __init__(self, filename: str, node_name: str = "", file_locations: List[str] = None):
+        super().__init__(filename, node_name, file_locations)
