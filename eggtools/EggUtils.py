@@ -8,7 +8,9 @@ if you decide to operate on a set of egg files.
 import subprocess
 
 
-def make_texpaths_relative(egg):
+def make_texpaths_relative(egg, subprocess_kwargs: dict = None):
+    if not subprocess_kwargs:
+        subprocess_kwargs = {}
     # -ps rel will make the texture path relative instead of absolute
     egg_trans_config = [
         "egg-trans",
@@ -18,10 +20,10 @@ def make_texpaths_relative(egg):
         egg,
         egg
     ]
-    subprocess.run(egg_trans_config)
+    subprocess.run(egg_trans_config, **subprocess_kwargs)
 
 
-def collapse_trefs(egg):
+def collapse_trefs(egg, subprocess_kwargs: dict = None):
     """
     uses egg-trans to apply texture matrices from TRefs onto UVs, then collapses identical TRefs
 
@@ -32,6 +34,8 @@ def collapse_trefs(egg):
     when not to use this:
     - pre-palettize; some dupe textures may exist just as a way to separate parts that have complimentary UV layouts
     """
+    if not subprocess_kwargs:
+        subprocess_kwargs = {}
     egg_trans_config = [
         "egg-trans",
         "-t",
@@ -40,4 +44,4 @@ def collapse_trefs(egg):
         egg,
         egg
     ]
-    subprocess.run(egg_trans_config)
+    subprocess.run(egg_trans_config, **subprocess_kwargs)
