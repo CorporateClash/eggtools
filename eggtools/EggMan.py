@@ -804,7 +804,7 @@ class EggMan(object):
             filename = eggfile
         try:
             with open(filename, "w") as egg_file:
-                egg_file.write(str(egg))
+                egg_file.write(str(egg_data))
         except Exception as e:
             print(f"Failed to save file ({e})")
 
