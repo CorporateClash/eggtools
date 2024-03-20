@@ -793,6 +793,21 @@ class EggMan(object):
             pass
             # logging.debug(f"not rewriting {filename}")
 
+    @staticmethod
+    def rewrite_egg_manually(eggfile):
+        if not isinstance(eggfile, EggData):
+            egg_data = eggfile
+            filename = egg_data.getFilename()
+        else:
+            egg_data = EggData()
+            egg_data.read(eggfile)
+            filename = eggfile
+        try:
+            with open(filename, "w") as egg_file:
+                egg_file.write(str(egg))
+        except Exception as e:
+            print(f"Failed to save file ({e})")
+
 
 # test_tex_collection = EggTextureCollection()
 
