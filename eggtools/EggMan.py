@@ -795,7 +795,7 @@ class EggMan(object):
 
     @staticmethod
     def rewrite_egg_manually(eggfile):
-        if not isinstance(eggfile, EggData):
+        if isinstance(eggfile, EggData):
             egg_data = eggfile
             filename = egg_data.getFilename()
         else:
