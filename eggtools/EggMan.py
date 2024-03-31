@@ -28,6 +28,7 @@ from eggtools.attributes.EggAlphaAttribute import EggAlphaAttribute
 from eggtools.attributes.EggAttribute import EggAttribute
 from eggtools.attributes.EggUVNameAttribute import EggUVNameAttribute
 from eggtools.config.EggVariableConfig import GAMEASSETS_MAPS_PATH, GAMEASSETS_DIR
+from eggtools.utils.EggNameResolver import EggNameResolver
 
 BASE_PATH = GAMEASSETS_MAPS_PATH
 
@@ -65,7 +66,6 @@ class EggContext:
 class EggMan(object):
     # This is used to quickly grab EggData via a texture name
     _egg_name_2_egg_data = dict()
-    _search_paths = list()
 
     def __str__(self):
         out = f"Eggman ({id(self)})\n"
@@ -85,23 +85,14 @@ class EggMan(object):
 
         return verify
 
-    @property
-    def search_paths(self) -> list:
-        return self._search_paths
-
-    @search_paths.setter
-    def search_paths(self, path: list):
-        if type(path) is not list:
-            path = [path]
-        for sp in path:
-            self._search_paths.append(sp)
-
     def __init__(self, egg_filepaths: list, search_paths: list[str] = None,
                  loglevel: logging = logging.CRITICAL) -> None:
         logging.basicConfig(level=loglevel)
         if not search_paths:
             search_paths = [BASE_PATH]
-        self.search_paths = search_paths
+        self.NameResolver = EggNameResolver(search_paths, loglevel=loglevel)
+        self.search_paths = self.NameResolver.search_paths
+
         # use egg_datas to work with registered eggs
         # filename is stored in EggContext.filename
         self.egg_datas = dict()  # { EggData : EggContext }
@@ -571,16 +562,6 @@ class EggMan(object):
         else:
             self.egg_datas[egg].dirty = True
 
-    def try_different_names(self, filename: str, prefix_type: str = "t") -> str:
-        new_filename = filename.replace("ttcc_", f"cc_{prefix_type}_")
-        if not new_filename.startswith(f"cc_{prefix_type}_"):
-            new_filename = f"cc_{prefix_type}_{filename}"
-        if os.path.isfile(os.path.join(BASE_PATH, new_filename)):
-            logging.info(f"found similar texture name to {filename}: {new_filename}")
-            return new_filename
-        # can't find any hits, just return em back
-        return filename
-
     def resolve_egg_textures(self, egg: EggData, want_auto_resolve: bool = True, try_names: bool = True) -> None:
         def auto_resolve(tex_path: str):
             """
@@ -588,9 +569,9 @@ class EggMan(object):
             """
             tex_file = Path(tex_path).name
             if try_names:
-                tex_file = self.try_different_names(tex_file)
-            for search_path in self.search_paths:
-                new_tex_file = os.path.join(search_path, tex_file)
+                tex_file = self.NameResolver.try_different_names(tex_file)
+            for search_path in self.NameResolver.search_paths:
+                new_tex_file = Filename.fromOsSpecific(os.path.join(search_path, tex_file))
                 if not os.path.isfile(new_tex_file):
                     continue
                 logging.info(f"Rebasing texture path for {tex_file} to {search_path}")
