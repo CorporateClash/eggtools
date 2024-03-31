@@ -2,19 +2,16 @@
 given: dir (recursive?)
 old prefix
 new prefix
-iterate thru all eggh files for any textures with that old prefix and then change it to new prefix
+iterate thru all egg files for any textures with that old prefix and then change it to new prefix
 if it finds img file then it will also rename image file
 
-cc_t_gdg_prp_XYZ
+tt_t_foo_prp_XYZ
 -->
-cc_t_ara_est_prp_furn_gdg
-
+tt_t_abc_def_prp_XYZ
 
 unrelated todo:
 if there is a duplicate <UV> with same name, only keep one (but hard to determine which one automatically)
 might be fine to pick the first instance since thats what will be used in egg2bam
-
-Todo: See why depth write just dies with unrelated textures
 
 """
 from eggtools.utils.EggMaintenanceUtil import EggMaintenanceUtil
@@ -22,6 +19,7 @@ from eggtools.utils.EggMaintenanceUtil import EggMaintenanceUtil
 if __name__ == "__main__":
     from eggtools.config.EggVariableConfig import GAMEASSETS_PATH
     import os
+
     # BE VERY VERY CAREFUL ABOUT BROAD NAMES
 
     prefixRepaths = {
@@ -58,5 +56,5 @@ if __name__ == "__main__":
     putinTexFolder = target_path != GAMEASSETS_PATH
     eggmaint.perform_rename_operations(rename_texture_file=True, put_into_tex_folder=False, copy_only=False, partial_replace=True)
     # eggmaint.perform_texpath_fixes(put_into_tex_folder=putinTexFolder)
-    eggmaint.perform_general_maintenance() # # XXXX performing general maaintenance kills depth write
+    # eggmaint.perform_general_maintenance()
     # eggmaint.eggman.write_all_eggs_manually()

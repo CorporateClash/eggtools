@@ -108,13 +108,13 @@ class EggMaintenanceUtil:
 
 
 if __name__ == "__main__":
-    from eggtools.config.EggVariableConfig import CCMODELS_PATH, CCMODELS_MAPS_PATH
+    from eggtools.config.EggVariableConfig import GAMEASSETS_MODELS_PATH, GAMEASSETS_MAPS_PATH
     import os
+
     file_list = []
 
-    # target_path = CCMODELS_PATH
-    target_path = "***REMOVED***"
-    # ***REMOVED***
+    # target_path = "C:\\Path\\To\\Assets"
+    target_path = GAMEASSETS_MODELS_PATH
     for dirpath, _, filenames in os.walk(os.path.join(target_path)):
         for file in filenames:
             if file.endswith(".egg"):
@@ -122,7 +122,7 @@ if __name__ == "__main__":
                 file_list.append(os.path.abspath(os.path.join(dirpath, file)))
 
     eggmaint = EggMaintenanceUtil(file_list, base_path=target_path)
-    # Use put_into_tex_folder if we are operating on drive assets
+    # Use put_into_tex_folder if we are operating on storing assets individually
     eggmaint.perform_rename_operations(rename_texture_file=True, put_into_tex_folder=True, copy_only=False)
     eggmaint.perform_texpath_fixes()
     eggmaint.perform_general_maintenance()

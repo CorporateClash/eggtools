@@ -625,7 +625,7 @@ class EggMan(object):
                 logging.debug(f"(filepath){os.path.abspath(egg_texture.getFullpath())}")
                 logging.debug(f"(fixedpath){fixed_path}")
 
-    def resolve_external_refs(self, egg:EggData):
+    def resolve_external_refs(self, egg: EggData):
         ctx = self.egg_datas[egg]
         for external_ref in ctx.egg_ext_file_refs:
             # TODO, can copy what was done w/ ensuring texture
@@ -635,7 +635,7 @@ class EggMan(object):
     General Maintenance Methods
     """
 
-    def remove_texture_duplicates(self, egg:EggData=None):
+    def remove_texture_duplicates(self, egg: EggData = None):
         if not egg:
             for egg_data in self.egg_datas.keys():
                 egg_data.collapseEquivalentTextures()
@@ -656,6 +656,9 @@ class EggMan(object):
         self.mark_dirty(egg)
 
     def fix_broken_texpaths(self, egg: EggData = None) -> None:
+        """
+        Fixes broken texture paths but does not change the name of the TRef.
+        """
         if not egg:
             # ok we'll just fix all of the ones we've registered then
             for egg_data in self.egg_datas.keys():
@@ -700,7 +703,7 @@ class EggMan(object):
             ctx.egg_materials = set()
             self.mark_dirty(ctx)
 
-    def purge_all_comments(self, egg:EggData=None) -> None:
+    def purge_all_comments(self, egg: EggData = None) -> None:
         if not egg:
             for egg_data in self.egg_datas.keys():
                 self.purge_comments(egg_data)
@@ -746,14 +749,21 @@ class EggMan(object):
 
     def write_all_eggs_manually(self, custom_suffix=""):
         """
-        NB: This will cause eggs to have truncated floating point values for data.
-        Ensure that this isn't causing weird visual dislocation issues
+        Exports all of the Egg files in EggMan manually. This will guarantee that something does get exported.
+        By default, floating point values will be truncated to .4f
         """
+        # I don't think this is going to cause any visual dislocation issues. The precision comes from
+        # a floating point error nonetheless. We are also talking about a 0.0000xxxxxx difference.
         for egg_data in self.egg_datas.keys():
             self.write_egg_manually(egg_data, custom_suffix=custom_suffix)
 
     def write_egg_manually(self, egg, filename="", custom_suffix="", ):
-        # because for some reason write_egg doesn't ... work???
+        """
+        Don't know why this currently happens, but there are instances where trying to save the egg a la writeEgg
+        doesn't work. This is the alternative manual approach, where we just write out a string.
+
+        Floating point values will be truncated to .4f
+        """
         if not filename:
             filename = egg.egg_filename
         filename = Filename(filename.getFullpath() + custom_suffix)
@@ -776,6 +786,11 @@ class EggMan(object):
 
     @staticmethod
     def rewrite_egg_manually(eggfile):
+        """
+        Open, read, and re-write an egg file.
+
+        Since we are doing the manual approach, floating point values will be .4f by default.
+        """
         if isinstance(eggfile, EggData):
             egg_data = eggfile
             filename = egg_data.getFilename()
@@ -788,58 +803,3 @@ class EggMan(object):
                 egg_file.write(str(egg_data))
         except Exception as e:
             print(f"Failed to save file ({e})")
-
-
-# test_tex_collection = EggTextureCollection()
-
-# if any methods depend on the name of the TRef for anything, be wary of:
-# (EggTexture cc_tnurseShark_palette_4allc_1, EggTexture cc_tnurseShark_palette_4allc_1.tref1)
-
-if __name__ == "__main__":
-    mdls = [
-        # Filename.fromOsSpecific(os.path.join(CCMODELS_DIR, "***REMOVED***.egg")),
-        Filename.fromOsSpecific(os.path.join(CCMODELS_DIR, "***REMOVED***")),
-
-        # Filename.fromOsSpecific(os.path.join(CCMODELS_DIR, "***REMOVED***.egg"))
-    ]
-    # eg1 = EggContext("***REMOVED***.egg")
-    # eg2 = EggContext("***REMOVED***.egg")
-    #
-    # models = ["cogpodium.egg"]
-    f1 = "test1"
-    f2 = "test2"
-    eggman = EggMan(mdls)
-    eggs = eggman.egg_datas.keys()
-    ets = []
-    # repath_egg_texture1
-    for egg in eggs:
-        eggman.rename_group_nodes(egg, ["cup_"])
-        # print(egg)
-        # ctx = eggman.egg_datas[egg]
-        # for egg_texture in ctx.egg_textures:
-        #     new_filename = str(egg_texture.getFilename().getBasenameWoExtension())[::-1]
-        #     new_fullpath =  str(egg_texture.getFullpath().getBasenameWoExtension())[::-1]
-        #
-        #     eggman.repath_egg_texture(egg, egg_texture, new_fullpath, new_filename)
-        # print(egg)
-
-        # ets.append(eggman.egg_datas[egg])
-        # print(eggman.egg_datas[egg].filename)
-
-    # print(ets[0].egg_textures == ets[1].egg_textures)
-    # # repath_egg_texture
-    # for egg in eggs:
-    #     # print(egg)
-    #     # eggman.rename_trefs(egg)
-    #     # print(egg)
-    #     ctx = eggman.egg_datas[egg]
-    #     for egg_tex in ctx.egg_textures:
-    #         print(eggman.get_tex_info(egg_tex))
-    #     # # print(ctx.egg_texture_collection.getTextures())
-    #     # for egg_tex in ctx.egg_textures:
-    #     #     egg_fn = egg_tex.getFilename().getBasenameWoExtension()
-    #     #     new_tex = eggman.rebase_egg_texture(egg_fn, egg_tex.getFilename(), egg_tex)
-    #     #     do_tex_replace(egg, ctx, new_tex, egg_tex)
-    #     # print(egg)
-    #
-    #         # print(new_tex)
