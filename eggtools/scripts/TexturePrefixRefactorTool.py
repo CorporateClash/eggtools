@@ -20,7 +20,7 @@ Todo: See why depth write just dies with unrelated textures
 from eggtools.utils.EggMaintenanceUtil import EggMaintenanceUtil
 
 if __name__ == "__main__":
-    from eggtools.config.EggVariableConfig import CCMODELS_PATH, CCMODELS_MAPS_PATH
+    from eggtools.config.EggVariableConfig import GAMEASSETS_PATH
     import os
     # BE VERY VERY CAREFUL ABOUT BROAD NAMES
 
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     file_list = []
 
-    target_path = CCMODELS_PATH
+    target_path = GAMEASSETS_PATH
     target_path = os.path.join(target_path, "***REMOVED***")
     print(f"target ={target_path}")
 
@@ -55,8 +55,8 @@ if __name__ == "__main__":
     eggmaint = EggMaintenanceUtil(file_list, base_path=target_path, custom_rename_list=prefixRepaths)
     # Use put_into_tex_folder if we are operating on drive assets
 
-    putinTexFolder = target_path != CCMODELS_PATH
-    # eggmaint.perform_rename_operations(rename_texture_file=True, put_into_tex_folder=False, copy_only=False, partial_replace=True)
+    putinTexFolder = target_path != GAMEASSETS_PATH
+    eggmaint.perform_rename_operations(rename_texture_file=True, put_into_tex_folder=False, copy_only=False, partial_replace=True)
     # eggmaint.perform_texpath_fixes(put_into_tex_folder=putinTexFolder)
     eggmaint.perform_general_maintenance() # # XXXX performing general maaintenance kills depth write
     # eggmaint.eggman.write_all_eggs_manually()

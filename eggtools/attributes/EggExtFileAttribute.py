@@ -4,7 +4,7 @@ from typing import List
 
 from eggtools.attributes.EggAttribute import EggAttribute
 
-from eggtools.config.EggVariableConfig import CCMODELS_MODELS_PATH
+from eggtools.config.EggVariableConfig import GAMEASSETS_MODELS_PATH
 import os
 
 # Example file usage:

@@ -27,9 +27,9 @@ from eggtools.AttributeDefs import DefinedAttributes, ObjectTypeDefs
 from eggtools.attributes.EggAlphaAttribute import EggAlphaAttribute
 from eggtools.attributes.EggAttribute import EggAttribute
 from eggtools.attributes.EggUVNameAttribute import EggUVNameAttribute
-from eggtools.config.EggVariableConfig import CCMODELS_MAPS_PATH, CCMODELS_DIR
+from eggtools.config.EggVariableConfig import GAMEASSETS_MAPS_PATH, GAMEASSETS_DIR
 
-BASE_PATH = CCMODELS_MAPS_PATH
+BASE_PATH = GAMEASSETS_MAPS_PATH
 
 
 class EggGroupRenameType(str, Enum):
@@ -593,7 +593,7 @@ class EggMan(object):
                 new_tex_file = os.path.join(search_path, tex_file)
                 if not os.path.isfile(new_tex_file):
                     continue
-                logging.info(f"Rebasing texture path for {tex_file} to CCMODELS_MAPS")
+                logging.info(f"Rebasing texture path for {tex_file} to {search_path}")
                 tex_path = os.path.relpath(
                     new_tex_file, os.path.dirname(os.path.abspath(ctx.filename))
                 ).replace(os.sep, '/')

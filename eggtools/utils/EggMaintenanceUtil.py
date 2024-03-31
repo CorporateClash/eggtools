@@ -12,7 +12,7 @@ class EggMaintenanceUtil:
     def __init__(self, file_list, custom_rename_list=None, base_path=None):
         self.base_path = base_path
         if not self.base_path:
-            self.base_path = CCMODELS_MAPS_PATH
+            self.base_path = GAMEASSETS_MAPS_PATH
         self.eggman = EggMan(file_list)
         if not custom_rename_list:
             self.rename_list = rename_list
