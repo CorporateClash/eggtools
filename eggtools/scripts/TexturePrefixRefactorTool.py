@@ -23,7 +23,7 @@ if __name__ == "__main__":
     # BE VERY VERY CAREFUL ABOUT BROAD NAMES
 
     prefixRepaths = {
-        "***REMOVED***": "***REMOVED***"
+        "old_prefix": "newPrefix"
     }
 
     # When we get a texture file that matches a key in prefixRepaths, we will replace the old prefix with the new
@@ -34,11 +34,8 @@ if __name__ == "__main__":
     file_list = []
 
     target_path = GAMEASSETS_PATH
-    target_path = os.path.join(target_path, "***REMOVED***")
     print(f"target ={target_path}")
 
-    # target_path = "G:\\Shared drives\\Creative Team\\Game Assets\\Props\\Environmental Props\\Gardening Items\\planter"
-    # ***REMOVED***
     for dirpath, _, filenames in os.walk(os.path.join(target_path)):
         for fileName in filenames:
             # if fileName.endswith(".png"):

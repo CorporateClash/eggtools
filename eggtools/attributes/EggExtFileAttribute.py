@@ -90,7 +90,7 @@ class EggExtFileAttribute(EggAttribute):
             filepath = f"{file_location}{filename}"
 
             if not os.path.isfile(filepath):
-                filepath = os.path.join(CCMODELS_MODELS_PATH, filename)
+                filepath = os.path.join(GAMEASSETS_MODELS_PATH, filename)
 
             if not os.path.isfile(filepath):
                 print(f"Warning: Still couldn't find a file {filepath}")
@@ -98,7 +98,7 @@ class EggExtFileAttribute(EggAttribute):
                 break
 
         self.file = Filename.fromOsSpecific(filepath)
-        self.file.makeRelativeTo(Filename.fromOsSpecific(CCMODELS_MODELS_PATH))
+        self.file.makeRelativeTo(Filename.fromOsSpecific(GAMEASSETS_MODELS_PATH))
 
         super().__init__(entry_type="File", name=self.node_name, contents=self.file)
 
