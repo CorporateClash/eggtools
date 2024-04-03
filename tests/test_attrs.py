@@ -24,6 +24,7 @@ def test_egg_attrs():
     EggDartAttribute("structured")
     EggDecalAttribute()
     EggExtFileAttribute("dummy.egg")
+    EggExtFileAttribute("test_spot.egg")
     EggModelAttribute()
     EggSequenceAttribute()
     EggTagAttribute("key", "val")
