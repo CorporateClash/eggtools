@@ -6,13 +6,10 @@
 It allows you to do bulk/individual modifications to a set of egg files,
 
 ## Installation
-If you are using Devtools, then Poetry should automatically install Eggtools.
-
-However, to install this as a standalone package, you can run the following:
+To install this as a standalone package, you can run the following:
 ```
 pip install git+https://github.com/CorporateClash/eggtools
 ```
-
 
 ## Utilities
 If you installed Eggtools as a global package, then a few utilities are available:
