@@ -22,7 +22,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    'other_egg_filepaths', nargs="+", action="extend", type=str,
+    'other_egg_filepaths', nargs="+", action="extend",
 )
 
 parser.add_argument(
@@ -34,10 +34,10 @@ parser.add_argument(
 )
 parser.add_argument(
     '--inplace',
-    type=str,
+    # type=str,
     default=False,
     action='store_true',
-    nargs='?',
+    # nargs='?',
     help='If this option is given, the input egg files will be rewritten in place with the results.',
 )
 

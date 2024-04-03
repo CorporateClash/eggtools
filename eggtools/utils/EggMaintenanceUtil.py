@@ -3,8 +3,8 @@ import shutil
 from panda3d.core import Filename
 
 from eggtools.EggMan import EggMan
-from eggtools.config.EggRenameKeys import rename_list
-import os
+
+rename_list = {}
 
 
 class EggMaintenanceUtil:
