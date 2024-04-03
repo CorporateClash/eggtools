@@ -6,10 +6,12 @@
 It allows you to do bulk/individual modifications to a set of egg files,
 
 ## Installation
-To install this as a standalone package, you can run the following:
+To install and use as a standalone package, you can run the following in your developer environment:
 ```
 pip install git+https://github.com/CorporateClash/eggtools
 ```
+
+For working directly with the codebase, Poetry is the default and preferred installation method to use.
 
 ## Utilities
 If you installed Eggtools as a global package, then a few utilities are available:
