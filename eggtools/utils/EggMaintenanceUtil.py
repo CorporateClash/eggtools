@@ -141,7 +141,30 @@ class EggMaintenanceUtil:
             self.eggman.write_egg(egg_obj)
 
 
+"""
+Test module
+"""
+
 if __name__ == "__main__":
+    from eggtools.config.EggVariableConfig import GAMEASSETS_MODELS_PATH, GAMEASSETS_MAPS_PATH
+    import os
+
+    file_list = []
+
+    target_path = os.getcwd()
+    for dirpath, _, filenames in os.walk(os.path.join(target_path)):
+        for file in filenames:
+            if file.endswith(".egg"):
+                print(f"adding file {file}")
+                file_list.append(os.path.abspath(os.path.join(dirpath, file)))
+
+    eggmaint = EggMaintenanceUtil(file_list, base_path=target_path)
+
+"""
+Sample Implementation
+"""
+
+if 0:
     from eggtools.config.EggVariableConfig import GAMEASSETS_MODELS_PATH, GAMEASSETS_MAPS_PATH
     import os
 

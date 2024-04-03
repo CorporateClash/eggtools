@@ -803,3 +803,22 @@ class EggMan(object):
                 egg_file.write(str(egg_data))
         except Exception as e:
             print(f"Failed to save file ({e})")
+
+
+"""
+Test module
+"""
+
+if __name__ == "__main__":
+    import os
+
+    file_list = []
+
+    target_path = os.getcwd()
+    for dirpath, _, filenames in os.walk(os.path.join(target_path)):
+        for file in filenames:
+            if file.endswith(".egg"):
+                print(f"adding file {file}")
+                file_list.append(os.path.abspath(os.path.join(dirpath, file)))
+
+    eggman = EggMan(file_list)

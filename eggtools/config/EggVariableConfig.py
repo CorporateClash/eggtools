@@ -26,3 +26,6 @@ GAMEASSETS_MODELS_PATH = os.path.abspath(
     os.environ.get('GAMEASSETS_MODELS', os.path.join(os.getcwd(), '../src/models'))
 )
 builtins.GAMEASSETS_MODELS_PATH = GAMEASSETS_MODELS_PATH
+
+if __name__ == "__main__":
+    print(f"Gameassets SRC = {GAMEASSETS_PATH}")

@@ -14,3 +14,4 @@ eggman = EggMan([test_egg])
 egg = eggman.get_egg_by_filename("coll_test.egg")
 ctx = eggman.egg_datas[egg]
 eggman.apply_attributes(egg)
+print(egg)
