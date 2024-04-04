@@ -7,15 +7,7 @@ authors = ["Corporate Clash Crew"]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-StrEnum = "^0.4.8"
-ordered-set = "^4.1.0"
-pathvalidate = "^3.1.0"
 
 [tool.poetry.group.dev.dependencies]
 python = ">=3.8,<4.0"
-pytest = { version = "^7.1.3", python = ">=3.8"}
-mypy = { version = "^0.982", python = ">=3.8"}
-jurigged = { version = "^0.5.2", python = ">=3.8"}
 panda3d = "^1.10.14"
-Pillow = "^10.0.0"
-
