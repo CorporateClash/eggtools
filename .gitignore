@@ -24,3 +24,4 @@ buildtools/rules/test.txa
 *.pclprof
 *.bam
 *.egg
+/env
