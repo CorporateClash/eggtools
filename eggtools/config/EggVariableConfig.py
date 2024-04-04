@@ -10,20 +10,20 @@ define builtin path locations
 # instead have your environment variables defined!
 
 GAMEASSETS_PATH = os.path.abspath(
-    os.environ.get('GAMEASSETS_SRC', os.path.join(os.getcwd(), '../src'))
+    os.environ.get('GAMEASSETS_SRC', os.path.join(os.getcwd(), './'))
 )
 builtins.GAMEASSETS_PATH = GAMEASSETS_PATH
 # Required for egg-palettize to behave correctly
-GAMEASSETS_DIR = os.environ.get('GAMEASSETS_SRC', '../src')
+GAMEASSETS_DIR = os.environ.get('GAMEASSETS_SRC', './')
 builtins.GAMEASSETS_DIR = GAMEASSETS_DIR
 
 GAMEASSETS_MAPS_PATH = os.path.abspath(
-    os.environ.get('GAMEASSETS_MAPS', os.path.join(os.getcwd(), '../src/maps'))
+    os.environ.get('GAMEASSETS_MAPS', os.path.join(os.getcwd(), './maps/'))
 )
 builtins.GAMEASSETS_MAPS_PATH = GAMEASSETS_MAPS_PATH
 
 GAMEASSETS_MODELS_PATH = os.path.abspath(
-    os.environ.get('GAMEASSETS_MODELS', os.path.join(os.getcwd(), '../src/models'))
+    os.environ.get('GAMEASSETS_MODELS', os.path.join(os.getcwd(), './models/'))
 )
 builtins.GAMEASSETS_MODELS_PATH = GAMEASSETS_MODELS_PATH
 
