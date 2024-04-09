@@ -106,7 +106,7 @@ class EggMan(object):
         for fp in egg_filepaths:
             if not isinstance(fp, Filename):
                 fp = Filename.fromOsSpecific(fp)
-            if fp.getExtension() != "egg":
+            if fp.getExtension() not in ("egg", "pz"):  # pz: pzip
                 print(f"{fp.getBasenameWoExtension()} does not have egg extension, not registering {fp.getFullpath()}")
                 continue
             egg_data = EggData()
