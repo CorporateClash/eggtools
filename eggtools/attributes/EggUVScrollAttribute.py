@@ -14,7 +14,7 @@ class EggUVScrollAttribute(EggAttribute):
         pass
 
     def _modify_node(self, egg_node):
-        if self.target_nodes.check(egg_node.getName()):
+        if self.target_nodes.check(egg_node.getName()) and hasattr(egg_node, "set_scroll_u"):
             egg_node.set_scroll_u(self.u_speed)
             egg_node.set_scroll_v(self.v_speed)
             egg_node.set_scroll_w(self.w_speed)
