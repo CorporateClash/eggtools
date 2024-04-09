@@ -725,10 +725,22 @@ class EggMan(object):
     """
 
     def write_all_eggs(self, custom_suffix="", dryrun=False):
+        """
+        Writes egg files through the EggData writeEgg method.
+
+        Not always guaranteed to output changes made to the egg file, and will export floating point values
+        up to the number defined in your Config file.
+        """
         for egg_data in self.egg_datas.keys():
             self.write_egg(egg_data, custom_suffix=custom_suffix, dryrun=dryrun)
 
     def write_egg(self, egg, filename: Filename = None, custom_suffix="", dryrun=False):
+        """
+        Writes egg files through the EggData writeEgg method.
+
+        Not always guaranteed to output changes made to the egg file, and will export floating point values
+        up to the number defined in your Config file.
+        """
         if not filename:
             filename = egg.egg_filename
         filename = Filename(filename.getFullpath() + custom_suffix)
