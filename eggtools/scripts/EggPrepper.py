@@ -23,7 +23,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    'other_egg_filepaths', nargs="+", action="extend", type=str,
+    'other_egg_filepaths', nargs="*", action="extend", type=str,
 )
 
 args = parser.parse_args()
