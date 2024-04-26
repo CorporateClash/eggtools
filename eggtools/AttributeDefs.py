@@ -198,6 +198,10 @@ ObjectTypeDefs = {
         EggCollideMask(0x05),
         EggCollide('polyset', ['descend']),
     ],
+    "camera-barrier": [
+        EggCollideMask(0x05),
+        EggCollide('polyset', ['descend']),
+    ],
     "camtransbarrier": [
         EggCollideMask(0x09),
         EggCollide('polyset', ['descend']),
