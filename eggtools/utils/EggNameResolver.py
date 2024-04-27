@@ -6,13 +6,19 @@ from panda3d.core import Filename
 
 class EggNameResolver:
     _search_paths = list()
+
+    # Default old->new prefixes
     OLD_PREFIX = "ttcc"
     NEW_PREFIX = "cc"
 
-    def __init__(self, search_paths, loglevel=logging.CRITICAL):
+    def __init__(self, search_paths, loglevel=logging.CRITICAL, old_prefix="", new_prefix=""):
         """
         Utility class to try and resolve certain texture names automatically
         """
+        if not old_prefix:
+            self.old_prefix = self.OLD_PREFIX
+        if not new_prefix:
+            self.new_prefix = self.NEW_PREFIX
         self.search_paths = search_paths
         logging.basicConfig(level=loglevel)
 
@@ -29,9 +35,9 @@ class EggNameResolver:
 
     def try_different_names(self, filename: str, prefix_type: str = "t") -> str:
         # Replace: toontown_background --> tt_t_background
-        new_filename = filename.replace(f"{self.OLD_PREFIX}_", f"{self.NEW_PREFIX}_{prefix_type}_")
-        if not new_filename.startswith(f"{self.NEW_PREFIX}_{prefix_type}_"):
-            new_filename = f"{self.NEW_PREFIX}_{prefix_type}_{filename}"
+        new_filename = filename.replace(f"{self.old_prefix}_", f"{self.new_prefix}_{prefix_type}_")
+        if not new_filename.startswith(f"{self.new_prefix}_{prefix_type}_"):
+            new_filename = f"{self.new_prefix}_{prefix_type}_{filename}"
 
         for filepath in self.search_paths:
             # We have to convert back into Filename because os.path can't find files with like
