@@ -39,5 +39,4 @@ if args.other_egg_filepaths:
     all_eggs += args.other_egg_filepaths
 
 maintainer = EggMaintenanceUtil(file_list=all_eggs)
-maintainer.eggman.remove_all_egg_materials()
 maintainer.perform_general_maintenance()
