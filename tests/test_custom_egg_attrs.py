@@ -63,4 +63,4 @@ egg_attributes = {
 }
 eggman.apply_attributes(egg, egg_attributes)
 
-eggman.write_all_eggs(dryrun=True)
+eggman.write_all_eggs_manually(dryrun=True)
