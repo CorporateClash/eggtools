@@ -1,4 +1,5 @@
 import shutil
+import os
 
 from panda3d.core import Filename
 
@@ -147,7 +148,6 @@ Test module
 
 if __name__ == "__main__":
     from eggtools.config.EggVariableConfig import GAMEASSETS_MODELS_PATH, GAMEASSETS_MAPS_PATH
-    import os
 
     file_list = []
 
@@ -166,7 +166,6 @@ Sample Implementation
 
 if 0:
     from eggtools.config.EggVariableConfig import GAMEASSETS_MODELS_PATH, GAMEASSETS_MAPS_PATH
-    import os
 
     file_list = []
 
