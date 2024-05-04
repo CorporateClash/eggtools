@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "corporateclash-eggtools"
-version = "2.1.0"
+version = "2.2.0"
 description = "Library of utilities catered towards managing Panda3D egg files."
 
 authors = ["The Corporate Clash Crew"]
